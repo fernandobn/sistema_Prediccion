@@ -1,0 +1,79 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block contenido %}
+<!-- Formulario de Predicción de Salud Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h2 class="mb-3">Formulario de Predicción de Salud</h2>
+            <p class="fs-5">Complete el formulario para predecir el riesgo de diabetes y nivel de glucosa en ayunas.</p>
+        </div>
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <div class="row g-4">
+                <!-- Edad -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="edad" name="edad" required>
+                        <label for="edad">Edad (años)</label>
+                    </div>
+                </div>
+                <!-- IMC -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="imc" name="imc" step="0.1" required>
+                        <label for="imc">Índice de Masa Corporal (IMC)</label>
+                    </div>
+                </div>
+                <!-- Nivel de actividad física semanal -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="actividad_fisica" name="actividad_fisica" required>
+                        <label for="actividad_fisica">Nivel de actividad física semanal (horas)</label>
+                    </div>
+                </div>
+                <!-- Presión arterial sistólica -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="presion_arterial" name="presion_arterial" required>
+                        <label for="presion_arterial">Presión arterial sistólica</label>
+                    </div>
+                </div>
+                <!-- Antecedentes familiares de diabetes -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.1s">
+                    <div class="form-floating">
+                        <select class="form-select" id="antecedentes_diabetes" name="antecedentes_diabetes" required>
+                            <option value="sí">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                        <label for="antecedentes_diabetes">Antecedentes familiares de diabetes</label>
+                    </div>
+                </div>
+                <!-- Nivel de glucosa en ayunas (target para regresión lineal) -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.3s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="glucosa" name="glucosa" required>
+                        <label for="glucosa">Nivel de glucosa en ayunas (mg/dL)</label>
+                    </div>
+                </div>
+                <!-- Riesgo de diabetes (target para regresión logística) -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.5s">
+                    <div class="form-floating">
+                        <select class="form-select" id="riesgo_diabetes" name="riesgo_diabetes" required>
+                            <option value="0">No riesgo</option>
+                            <option value="1">Riesgo</option>
+                        </select>
+                        <label for="riesgo_diabetes">Riesgo de diabetes</label>
+                    </div>
+                </div>
+                <!-- Botón de envío -->
+                <div class="col-12 wow fadeInUp" data-wow-delay="1.7s">
+                    <button type="submit" class="btn btn-primary w-100 py-3">Enviar Predicción</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Formulario de Predicción de Salud End -->
+{% endblock %}

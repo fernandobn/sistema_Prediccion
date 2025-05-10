@@ -1,0 +1,58 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block contenido %}
+<!-- Resultados de Predicción Educacional Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <!-- Título principal -->
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h2 class="mb-3">Resultados de la Predicción Educacional</h2>
+            <p class="fs-5">Aquí puedes ver los resultados de tu predicción sobre el rendimiento académico y riesgo de fracaso.</p>
+        </div>
+
+        <!-- Fila para mostrar los resultados -->
+        <div class="row g-4">
+            <!-- Nota Final (Regresión Lineal) -->
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-light rounded p-4">
+                    <h4 class="text-primary">Nota Final (Regresión Lineal)</h4>
+                    <p><strong>{{ nota_final }} / 10</strong></p>
+                </div>
+            </div>
+
+            <!-- Riesgo de Fracaso (Regresión Logística) -->
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded p-4">
+                    <h4 class="text-danger">Riesgo de Fracaso (Regresión Logística)</h4>
+                    <p><strong>{% if riesgo_fracaso == 1 %}Riesgo{% else %}No riesgo{% endif %}</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Gráficos de Resultados -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="bg-light rounded p-4">
+                    <h4 class="text-center text-primary">Gráficos de Predicción Educacional</h4>
+                    
+                    <!-- Contenedor para gráfico de regresión lineal -->
+                    <div id="grafico-educacional-lineal" class="text-center mb-4">
+                        <h5>Gráfico de Regresión Lineal (Nota Final)</h5>
+                        <!-- Aquí se generará dinámicamente el gráfico -->
+                        <div id="grafico_educacional_lineal"></div>
+                    </div>
+
+                    <!-- Contenedor para gráfico de regresión logística -->
+                    <div id="grafico-educacional-logistico" class="text-center">
+                        <h5>Gráfico de Regresión Logística (Riesgo de Fracaso)</h5>
+                        <!-- Aquí se generará dinámicamente el gráfico -->
+                        <div id="grafico_educacional_logistico"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Resultados de Predicción Educacional End -->
+{% endblock %}

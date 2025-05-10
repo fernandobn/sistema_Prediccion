@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>ArtifPred</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <!-- Favicon -->
+    <link href="{% static 'img/configuracion.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Librerías CSS -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap personalizado -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Estilos de la plantilla -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Cargando -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Cargando...</span>
+        </div>
+    </div>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><i class="fa fa-brain me-3"></i>ArtifPred</h2>
+        </a>
+        <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link">Inicio</a>
+
+                <!-- Submenú de predicción -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Formulario</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="/formularioEstudiantil/" class="dropdown-item">Formulario Escolar</a>
+                        <a href="/formularioSalud/" class="dropdown-item">Formulario de Salud</a>
+                    </div>
+                </div>
+                 <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Grafico de predicción</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="/graficoEstudiantil/" class="dropdown-item">Graficos Escolar</a>
+                        <a href="/graficoSalud/" class="dropdown-item">Graficos de Salud</a>
+                    </div>
+                </div>
+
+                <a href="/integrantes/" class="nav-item nav-link">Integrantes</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido dinámico -->
+    {% block contenido %}
+    {% endblock %}
+
+  <!-- Pie de página -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <!-- Enlaces rápidos -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <h4 class="text-white mb-3">Enlaces Rápidos</h4>
+                    <a class="btn btn-link" href="/">Inicio</a>
+                    <a class="btn btn-link" href="/formularioEstudiantil/">Formulario Escolar</a>
+                    <a class="btn btn-link" href="/formularioSalud/">Formulario de Salud</a>
+                     <a href="/graficoEstudiantil/" class="btn btn-link">Graficos Escolar</a>
+                     <a href="/graficoSalud/"class="btn btn-link">Graficos de Salud</a>
+
+                    <a class="btn btn-link" href="/integrantes/">Integrantes</a>
+                </div>
+                <!-- Contacto -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <h4 class="text-white mb-3">Contacto</h4>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>Av. Simón Rodríguez s/n Barrio El Ejido Sector San Felipe.</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>Teléfonos: (593) 03 2252205 / 2252307 / 2252346.</p>
+                    <p><i class="fa fa-envelope me-3"></i>www.utc.edu.ec</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Botón "Volver arriba" -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

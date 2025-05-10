@@ -1,0 +1,80 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block contenido %}
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5">
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'img/carousel-1.jpg' %}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                 style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Predicción Inteligente</h5>
+                            <h1 class="display-3 text-white animated slideInDown">Anticipa el rendimiento académico</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">Con algoritmos de regresión, ArtifPred predice notas finales y clasifica a los estudiantes según su riesgo de deserción.</p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'img/carousel-2.jpg' %}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                 style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h5 class="text-primary text-uppercase mb-3 animated slideInDown">IA para la Salud</h5>
+                            <h1 class="display-3 text-white animated slideInDown">Evalúa el riesgo de diabetes tipo 2</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">ArtifPred utiliza IA para analizar variables clínicas y predecir si una persona está en riesgo de desarrollar diabetes.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+<!-- Información del Proyecto Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h2 class="mb-3">¿Qué es ArtifPred?</h2>
+            <p class="fs-5">ArtifPred es una plataforma educativa diseñada para aplicar Inteligencia Artificial Predictiva en contextos reales, como el entorno escolar y de salud.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-light rounded p-4 h-100">
+                    <h4 class="text-primary"><i class="fa fa-graduation-cap me-2"></i> Predicción Escolar</h4>
+                    <p>Utilizando modelos de regresión lineal y logística, ArtifPred permite predecir el rendimiento académico de estudiantes y clasificar si están en riesgo de reprobar o desertar.</p>
+                    <ul>
+                        <li>Horas de estudio</li>
+                        <li>Asistencia y participación</li>
+                        <li>Evaluaciones parciales</li>
+                    </ul>
+                    <a href="/formularioEstudiantil/" class="btn btn-outline-primary mt-3">Probar predicción escolar</a>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded p-4 h-100">
+                    <h4 class="text-success"><i class="fa fa-heartbeat me-2"></i> Predicción de Salud</h4>
+                    <p>Se analizan datos clínicos para estimar el nivel de glucosa en sangre y clasificar el riesgo de desarrollar diabetes tipo 2, aplicando IA predictiva.</p>
+                    <ul>
+                        <li>Edad, IMC y presión arterial</li>
+                        <li>Actividad física semanal</li>
+                        <li>Antecedentes familiares</li>
+                    </ul>
+                    <a href="/formularioSalud/" class="btn btn-outline-success mt-3">Probar predicción de salud</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Información del Proyecto End -->
+{% endblock %}

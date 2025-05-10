@@ -1,0 +1,69 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block contenido %}
+<!-- Formulario de Predicción Escolar Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h2 class="mb-3">Formulario de Predicción Escolar</h2>
+            <p class="fs-5">Complete el formulario para predecir su rendimiento académico y riesgo de fracaso.</p>
+        </div>
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <div class="row g-4">
+                <!-- Horas de estudio semanal -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="horas_estudio" name="horas_estudio" required>
+                        <label for="horas_estudio">Número de horas de estudio semanal</label>
+                    </div>
+                </div>
+                <!-- Asistencia (%) -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="asistencia" name="asistencia" min="0" max="100" required>
+                        <label for="asistencia">Asistencia (%)</label>
+                    </div>
+                </div>
+                <!-- Participación en clase -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="participacion" name="participacion" required>
+                        <label for="participacion">Participación en clase</label>
+                    </div>
+                </div>
+                <!-- Resultados de evaluaciones parciales -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="evaluaciones" name="evaluaciones" min="0" max="100" required>
+                        <label for="evaluaciones">Resultados de evaluaciones parciales</label>
+                    </div>
+                </div>
+                <!-- Nota final (target para regresión lineal) -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.1s">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="nota_final" name="nota_final" min="0" max="10" required>
+                        <label for="nota_final">Nota final</label>
+                    </div>
+                </div>
+                <!-- Riesgo de fracaso (target para regresión logística) -->
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.3s">
+                    <div class="form-floating">
+                        <select class="form-select" id="riesgo_fracaso" name="riesgo_fracaso" required>
+                            <option value="0">No riesgo</option>
+                            <option value="1">Riesgo</option>
+                        </select>
+                        <label for="riesgo_fracaso">Riesgo de fracaso</label>
+                    </div>
+                </div>
+                <!-- Botón de envío -->
+                <div class="col-12 wow fadeInUp" data-wow-delay="1.5s">
+                    <button type="submit" class="btn btn-primary w-100 py-3">Enviar Predicción</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Formulario de Predicción Escolar End -->
+{% endblock %}
