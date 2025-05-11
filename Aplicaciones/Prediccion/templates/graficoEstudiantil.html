@@ -16,16 +16,16 @@
             <!-- Nota Final (Regresión Lineal) -->
             <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="bg-light rounded p-4">
-                    <h4 class="text-primary">Nota Final (Regresión Lineal)</h4>
-                    <p><strong>{{ nota_final }} / 10</strong></p>
+                    <h4 class="text-{% if riesgo_fracaso == 1 %}danger{% else %}success{% endif %}">Nota Final (Regresión Lineal)</h4>
+                    <p class="text-{% if riesgo_fracaso == 1 %}danger{% else %}success{% endif %}"><strong>{{ nota_final }} / 37</strong></p>
                 </div>
             </div>
 
             <!-- Riesgo de Fracaso (Regresión Logística) -->
             <div class="col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded p-4">
-                    <h4 class="text-danger">Riesgo de Fracaso (Regresión Logística)</h4>
-                    <p><strong>{% if riesgo_fracaso == 1 %}Riesgo{% else %}No riesgo{% endif %}</strong></p>
+                    <h4 class="text-{% if riesgo_fracaso == 1 %}danger{% else %}success{% endif %}">Riesgo de Fracaso (Regresión Logística)</h4>
+                    <p class="text-{% if riesgo_fracaso == 1 %}danger{% else %}success{% endif %}"><strong>{% if riesgo_fracaso == 1 %}Riesgo{% else %}No riesgo{% endif %}</strong></p>
                 </div>
             </div>
         </div>
@@ -40,14 +40,18 @@
                     <div id="grafico-educacional-lineal" class="text-center mb-4">
                         <h5>Gráfico de Regresión Lineal (Nota Final)</h5>
                         <!-- Aquí se generará dinámicamente el gráfico -->
-                        <div id="grafico_educacional_lineal"></div>
+                        <div id="grafico_educacional_lineal">
+                            <img src="data:image/png;base64,{{ grafico_lineal }}" alt="Gráfico de Predicción Lineal" class="img img-fluid">
+                        </div>
                     </div>
 
                     <!-- Contenedor para gráfico de regresión logística -->
                     <div id="grafico-educacional-logistico" class="text-center">
                         <h5>Gráfico de Regresión Logística (Riesgo de Fracaso)</h5>
                         <!-- Aquí se generará dinámicamente el gráfico -->
-                        <div id="grafico_educacional_logistico"></div>
+                        <div id="grafico_educacional_logistico">
+                            <img src="data:image/png;base64,{{ grafico_logistico }}" alt="Gráfico de Predicción Logistica" class="img img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
