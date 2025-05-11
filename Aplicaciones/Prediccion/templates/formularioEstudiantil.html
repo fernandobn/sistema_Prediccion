@@ -5,60 +5,83 @@
 <!-- Formulario de Predicción Escolar Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+        <div class="text-center mx-auto mb-5" style="max-width: 800px;">
             <h2 class="mb-3">Formulario de Predicción Escolar</h2>
             <p class="fs-5">Complete el formulario para predecir su rendimiento académico y riesgo de fracaso.</p>
         </div>
-        <form action="#" method="POST">
+        <form id="formPrediccion" action="#" method="POST">
             {% csrf_token %}
             <div class="row g-4">
                 <!-- Horas de estudio semanal -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="horas_estudio" name="horas_estudio" required>
-                        <label for="horas_estudio">Número de horas de estudio semanal</label>
+                        <input type="number" class="form-control" id="horas_estudio_semanal" name="horas_estudio_semanal" min="0" max="100" required>
+                        <label for="horas_estudio_semanal">Horas de estudio semanal</label>
                     </div>
                 </div>
+
                 <!-- Asistencia (%) -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="number" class="form-control" id="asistencia" name="asistencia" min="0" max="100" required>
                         <label for="asistencia">Asistencia (%)</label>
                     </div>
                 </div>
+
                 <!-- Participación en clase -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="participacion" name="participacion" required>
                         <label for="participacion">Participación en clase</label>
                     </div>
                 </div>
-                <!-- Resultados de evaluaciones parciales -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+
+                <!-- Evaluación parcial 1 -->
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="evaluaciones" name="evaluaciones" min="0" max="100" required>
-                        <label for="evaluaciones">Resultados de evaluaciones parciales</label>
+                        <input type="number" class="form-control" id="evaluacion_parcial1" name="evaluacion_parcial1" min="0" max="10" step="0.1" required>
+                        <label for="evaluacion_parcial1">Evaluación Parcial 1</label>
                     </div>
                 </div>
-                <!-- Nota final (target para regresión lineal) -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.1s">
+
+                <!-- Evaluación parcial 2 -->
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="nota_final" name="nota_final" min="0" max="10" required>
-                        <label for="nota_final">Nota final</label>
+                        <input type="number" class="form-control" id="evaluacion_parcial2" name="evaluacion_parcial2" min="0" max="10" step="0.1" required>
+                        <label for="evaluacion_parcial2">Evaluación Parcial 2</label>
                     </div>
                 </div>
-                <!-- Riesgo de fracaso (target para regresión logística) -->
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="1.3s">
+
+                <!-- Evaluación parcial 3 -->
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="evaluacion_parcial3" name="evaluacion_parcial3" min="0" max="10" step="0.1" required>
+                        <label for="evaluacion_parcial3">Evaluación Parcial 3</label>
+                    </div>
+                </div>
+
+                <!-- Nota final -->
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="nota_final" name="nota_final" min="0" max="10" step="0.1" required>
+                        <label for="nota_final">Nota Final</label>
+                    </div>
+                </div>
+
+                <!-- Riesgo de fracaso -->
+                <div class="col-md-6">
                     <div class="form-floating">
                         <select class="form-select" id="riesgo_fracaso" name="riesgo_fracaso" required>
+                            <option value="">Seleccione...</option>
                             <option value="0">No riesgo</option>
                             <option value="1">Riesgo</option>
                         </select>
                         <label for="riesgo_fracaso">Riesgo de fracaso</label>
                     </div>
                 </div>
+
                 <!-- Botón de envío -->
-                <div class="col-12 wow fadeInUp" data-wow-delay="1.5s">
+                <div class="col-12">
                     <button type="submit" class="btn btn-primary w-100 py-3">Enviar Predicción</button>
                 </div>
             </div>
@@ -66,4 +89,85 @@
     </div>
 </div>
 <!-- Formulario de Predicción Escolar End -->
+
+
+<script>
+       $('#formPrediccion').validate({
+    rules: {
+        horas_estudio_semanal: {
+            required: true,
+            min: 0,
+            max: 100
+        },
+        asistencia: {
+            required: true,
+            min: 0,
+            max: 100
+        },
+        participacion: {
+            required: true,
+            minlength: 1
+        },
+        evaluacion_parcial1: {
+            required: true,
+            min: 0,
+            max: 10
+        },
+        evaluacion_parcial2: {
+            required: true,
+            min: 0,
+            max: 10
+        },
+        evaluacion_parcial3: {
+            required: true,
+            min: 0,
+            max: 10
+        },
+        nota_final: {
+            required: true,
+            min: 0,
+            max: 10
+        },
+        riesgo_fracaso: {
+            required: true
+        }
+    },
+    messages: {
+        horas_estudio_semanal: "Ingrese un valor entre 0 y 100.",
+        asistencia: "Ingrese un porcentaje válido (0 a 100).",
+        participacion: "Este campo es obligatorio.",
+        evaluacion_parcial1: "Ingrese una nota entre 0 y 10.",
+        evaluacion_parcial2: "Ingrese una nota entre 0 y 10.",
+        evaluacion_parcial3: "Ingrese una nota entre 0 y 10.",
+        nota_final: "La nota debe estar entre 0 y 10.",
+        riesgo_fracaso: "Seleccione una opción."
+    },
+    
+    errorPlacement: function (error, element) {
+        if (element.parent('.form-floating').length) {
+            error.insertAfter(element.parent());  // Muestra después del bloque de form-floating
+        } else {
+            error.insertAfter(element);
+        }
+    }
+
+});
+
+</script>
+ <style>
+    label.error{
+        color:white;
+        font-weight: bold;
+        background-color: red;
+        border-radius: 10px;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    input.error{
+        border: 1px solid red;
+    }
+    textarea.error{
+        border: 1px solid red;
+    }
+</style>
 {% endblock %}
