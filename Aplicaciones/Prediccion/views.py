@@ -15,8 +15,7 @@ def inicio(request):
 
 # Prediccion estudiantil
 def formularioEstudiantil(request):
-    horas = range(0, 24)  # 0 a 23 inclusive
-    return render(request, 'formularioEstudiantil.html', {'horas': horas})
+    return render(request, 'formularioEstudiantil.html')
 
 
 

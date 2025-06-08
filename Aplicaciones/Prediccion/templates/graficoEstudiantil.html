@@ -2,23 +2,23 @@
 {% load static %}
 
 {% block contenido %}
-<!-- Resultados de Predicción del Clima con Red Neuronal Start -->
+<!-- Resultados de Evaluación de Bienestar Laboral con Red Neuronal Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <!-- Título principal -->
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-            <h2 class="mb-3">Resultados de la Predicción del Clima</h2>
-            <p class="fs-5">Aquí puedes ver los resultados de la predicción del clima generada por la Red Neuronal.</p>
+            <h2 class="mb-3">Resultados de la Evaluación de Bienestar Laboral</h2>
+            <p class="fs-5">Aquí puedes ver los resultados generados por la Red Neuronal sobre tu nivel de bienestar laboral.</p>
         </div>
 
         <!-- Fila para mostrar los resultados -->
         <div class="row g-4">
-            <!-- Predicción del Clima -->
+            <!-- Resultado del Bienestar -->
             <div class="col-12 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="bg-light rounded p-4 text-center">
-                    <h4 class="text-primary">Predicción del Clima (Red Neuronal)</h4>
+                    <h4 class="text-primary">Evaluación de Bienestar (Red Neuronal)</h4>
                     <p class="fs-4">
-                        <strong>{{ prediccion_clima }}</strong>
+                        <strong>{{ resultado_bienestar }}</strong>
                     </p>
                 </div>
             </div>
@@ -28,16 +28,16 @@
         <div class="row g-4 mt-4">
             <div class="col-12 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded p-4">
-                    <h4 class="text-center text-primary">Gráfico de Predicción del Clima</h4>
+                    <h4 class="text-center text-primary">Gráfico de Evaluación de Bienestar</h4>
                     
                     <!-- Contenedor para gráfico de la red neuronal -->
-                    <div id="grafico-clima-red-neuronal" class="text-center">
-                        <img src="data:image/png;base64,{{ grafico_clima_red_neuronal }}" alt="Gráfico de Predicción del Clima (Red Neuronal)" class="img img-fluid">
+                    <div id="grafico-bienestar-red-neuronal" class="text-center">
+                        <img src="data:image/png;base64,{{ grafico_bienestar_red_neuronal }}" alt="Gráfico de Evaluación de Bienestar (Red Neuronal)" class="img img-fluid">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Resultados de Predicción del Clima con Red Neuronal End -->
+<!-- Resultados de Evaluación de Bienestar Laboral con Red Neuronal End -->
 {% endblock %}

@@ -1,105 +1,104 @@
-{% extends 'plantilla.html' %} {% load static %} {% block contenido %}
-<!-- Formulario de Predicción Clima Start -->
+{% extends 'plantilla.html' %}
+{% load static %}
+{% block contenido %}
+<!-- Formulario de Bienestar Laboral Start -->
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center mx-auto mb-5" style="max-width: 800px">
-      <h2 class="mb-3">Formulario de Predicción del Clima</h2>
+      <h2 class="mb-3">Formulario de Bienestar Laboral</h2>
       <p class="fs-5">
-        Complete el formulario para predecir el comportamiento del clima.
+        Complete el formulario para evaluar su estado de bienestar en el trabajo.
       </p>
     </div>
-    <form id="formPrediccionClima" action="#" method="POST">
+    <form id="formBienestarLaboral" action="#" method="POST">
       {% csrf_token %}
       <div class="row g-4">
-        <!-- Temperatura °C -->
+        <!-- Nivel de estrés -->
         <div class="col-md-6">
           <div class="form-floating">
             <input
               type="number"
               class="form-control"
-              id="temperatura"
-              name="temperatura"
-              min="-50"
-              max="60"
-              step="0.1"
+              id="nivel_estres"
+              name="nivel_estres"
+              min="0"
+              max="10"
+              step="1"
               required
             />
-            <label for="temperatura">Temperatura °C</label>
+            <label for="nivel_estres">Nivel de estrés (0-10)</label>
           </div>
         </div>
 
-        <!-- Hora del día -->
+        <!-- Horas trabajadas a la semana -->
         <div class="col-md-6">
           <div class="form-floating">
-            <select
+            <input
+              type="number"
               class="form-control"
-              id="hora_del_dia"
-              name="hora_del_dia"
+              id="horas_trabajadas"
+              name="horas_trabajadas"
+              min="0"
+              max="100"
+              step="1"
               required
-            >
-              <option value="">Seleccione la hora</option>
-              {% for i in horas %}
-              <option value="{{ i }}">{{ i }}:00</option>
-              {% endfor %}
-            </select>
-
-            <label for="hora_del_dia">Hora del día</label>
+            />
+            <label for="horas_trabajadas">Horas trabajadas por semana</label>
           </div>
         </div>
 
-        <!-- Día de la semana -->
+        <!-- Nivel de satisfacción -->
         <div class="col-md-6">
           <div class="form-floating">
-            <select
+            <input
+              type="number"
               class="form-control"
-              id="dia_de_la_semana"
-              name="dia_de_la_semana"
+              id="nivel_satisfaccion"
+              name="nivel_satisfaccion"
+              min="0"
+              max="10"
+              step="1"
               required
-            >
-              <option value="">Seleccione un día</option>
-              <option value="lunes">Lunes</option>
-              <option value="martes">Martes</option>
-              <option value="miércoles">Miércoles</option>
-              <option value="jueves">Jueves</option>
-              <option value="viernes">Viernes</option>
-              <option value="sábado">Sábado</option>
-              <option value="domingo">Domingo</option>
-            </select>
-            <label for="dia_de_la_semana">Día de la semana</label>
+            />
+            <label for="nivel_satisfaccion">Nivel de satisfacción (0-10)</label>
           </div>
         </div>
 
         <!-- Botón de envío -->
         <div class="col-12">
           <button type="submit" class="btn btn-primary w-100 py-3">
-            Predecir
+            Evaluar
           </button>
         </div>
       </div>
     </form>
   </div>
 </div>
-<!-- Formulario de Predicción Clima End -->
+<!-- Formulario de Bienestar Laboral End -->
 
 <script>
-  $("#formPrediccionClima").validate({
+  $("#formBienestarLaboral").validate({
     rules: {
-      temperatura: {
+      nivel_estres: {
         required: true,
-        min: -50,
-        max: 60,
+        min: 0,
+        max: 10,
       },
-      hora_del_dia: {
+      horas_trabajadas: {
         required: true,
+        min: 0,
+        max: 100,
       },
-      dia_de_la_semana: {
+      nivel_satisfaccion: {
         required: true,
+        min: 0,
+        max: 10,
       },
     },
     messages: {
-      temperatura: "Ingrese una temperatura válida entre -50°C y 60°C.",
-      hora_del_dia: "Seleccione una hora del día.",
-      dia_de_la_semana: "Seleccione un día de la semana.",
+      nivel_estres: "Ingrese un valor entre 0 y 10.",
+      horas_trabajadas: "Ingrese entre 0 y 100 horas.",
+      nivel_satisfaccion: "Ingrese un valor entre 0 y 10.",
     },
     errorPlacement: function (error, element) {
       if (element.parent(".form-floating").length) {
@@ -121,9 +120,6 @@
     margin-top: 5px;
   }
   input.error {
-    border: 1px solid red;
-  }
-  select.error {
     border: 1px solid red;
   }
 </style>
