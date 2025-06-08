@@ -1,153 +1,130 @@
-{% extends 'plantilla.html' %}
-{% load static %}
-
-{% block contenido %}
-<!-- Formulario de Predicción Escolar Start -->
+{% extends 'plantilla.html' %} {% load static %} {% block contenido %}
+<!-- Formulario de Predicción Clima Start -->
 <div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center mx-auto mb-5" style="max-width: 800px;">
-            <h2 class="mb-3">Formulario de Predicción Escolar</h2>
-            <p class="fs-5">Complete el formulario para predecir su rendimiento académico y riesgo de fracaso.</p>
-        </div>
-        <form id="formPrediccion" action="#" method="POST">
-            {% csrf_token %}
-            <div class="row g-4">
-                <!-- Horas de estudio semanal -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="horas_estudio_semanal" name="horas_estudio_semanal" min="0" max="100" required>
-                        <label for="horas_estudio_semanal">Horas de estudio semanal</label>
-                    </div>
-                </div>
-
-                <!-- Asistencia (%) -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="asistencia" name="asistencia" min="0" max="100" required>
-                        <label for="asistencia">Asistencia (%)</label>
-                    </div>
-                </div>
-
-                <!-- Participación en clase -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="participacion" name="participacion" required>
-                        <label for="participacion">Participación en clase</label>
-                    </div>
-                </div>
-
-                <!-- Evaluación parcial 1 -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="evaluacion_parcial1" name="evaluacion_parcial1" min="0" max="10" step="0.1" required>
-                        <label for="evaluacion_parcial1">Evaluación Parcial 1</label>
-                    </div>
-                </div>
-
-                <!-- Evaluación parcial 2 -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="evaluacion_parcial2" name="evaluacion_parcial2" min="0" max="10" step="0.1" required>
-                        <label for="evaluacion_parcial2">Evaluación Parcial 2</label>
-                    </div>
-                </div>
-
-                <!-- Evaluación parcial 3 -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="evaluacion_parcial3" name="evaluacion_parcial3" min="0" max="10" step="0.1" required>
-                        <label for="evaluacion_parcial3">Evaluación Parcial 3</label>
-                    </div>
-                </div>
-
-                <!-- Botón de envío -->
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary w-100 py-3">Predecir</button>
-                </div>
-            </div>
-        </form>
+  <div class="container">
+    <div class="text-center mx-auto mb-5" style="max-width: 800px">
+      <h2 class="mb-3">Formulario de Predicción del Clima</h2>
+      <p class="fs-5">
+        Complete el formulario para predecir el comportamiento del clima.
+      </p>
     </div>
-</div>
-<!-- Formulario de Predicción Escolar End -->
+    <form id="formPrediccionClima" action="#" method="POST">
+      {% csrf_token %}
+      <div class="row g-4">
+        <!-- Temperatura °C -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="temperatura"
+              name="temperatura"
+              min="-50"
+              max="60"
+              step="0.1"
+              required
+            />
+            <label for="temperatura">Temperatura °C</label>
+          </div>
+        </div>
 
+        <!-- Hora del día -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              class="form-control"
+              id="hora_del_dia"
+              name="hora_del_dia"
+              required
+            >
+              <option value="">Seleccione la hora</option>
+              {% for i in horas %}
+              <option value="{{ i }}">{{ i }}:00</option>
+              {% endfor %}
+            </select>
+
+            <label for="hora_del_dia">Hora del día</label>
+          </div>
+        </div>
+
+        <!-- Día de la semana -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              class="form-control"
+              id="dia_de_la_semana"
+              name="dia_de_la_semana"
+              required
+            >
+              <option value="">Seleccione un día</option>
+              <option value="lunes">Lunes</option>
+              <option value="martes">Martes</option>
+              <option value="miércoles">Miércoles</option>
+              <option value="jueves">Jueves</option>
+              <option value="viernes">Viernes</option>
+              <option value="sábado">Sábado</option>
+              <option value="domingo">Domingo</option>
+            </select>
+            <label for="dia_de_la_semana">Día de la semana</label>
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100 py-3">
+            Predecir
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Formulario de Predicción Clima End -->
 
 <script>
-       $('#formPrediccion').validate({
+  $("#formPrediccionClima").validate({
     rules: {
-        horas_estudio_semanal: {
-            required: true,
-            min: 0,
-            max: 100
-        },
-        asistencia: {
-            required: true,
-            min: 0,
-            max: 100
-        },
-        participacion: {
-            required: true,
-            minlength: 1
-        },
-        evaluacion_parcial1: {
-            required: true,
-            min: 0,
-            max: 10
-        },
-        evaluacion_parcial2: {
-            required: true,
-            min: 0,
-            max: 10
-        },
-        evaluacion_parcial3: {
-            required: true,
-            min: 0,
-            max: 10
-        },
-        nota_final: {
-            required: true,
-            min: 0,
-            max: 10
-        },
-        riesgo_fracaso: {
-            required: true
-        }
+      temperatura: {
+        required: true,
+        min: -50,
+        max: 60,
+      },
+      hora_del_dia: {
+        required: true,
+      },
+      dia_de_la_semana: {
+        required: true,
+      },
     },
     messages: {
-        horas_estudio_semanal: "Ingrese un valor entre 0 y 100.",
-        asistencia: "Ingrese un porcentaje válido (0 a 100).",
-        participacion: "Este campo es obligatorio.",
-        evaluacion_parcial1: "Ingrese una nota entre 0 y 10.",
-        evaluacion_parcial2: "Ingrese una nota entre 0 y 10.",
-        evaluacion_parcial3: "Ingrese una nota entre 0 y 10.",
-        nota_final: "La nota debe estar entre 0 y 10.",
-        riesgo_fracaso: "Seleccione una opción."
+      temperatura: "Ingrese una temperatura válida entre -50°C y 60°C.",
+      hora_del_dia: "Seleccione una hora del día.",
+      dia_de_la_semana: "Seleccione un día de la semana.",
     },
-    
     errorPlacement: function (error, element) {
-        if (element.parent('.form-floating').length) {
-            error.insertAfter(element.parent());  // Muestra después del bloque de form-floating
-        } else {
-            error.insertAfter(element);
-        }
-    }
-
-});
-
+      if (element.parent(".form-floating").length) {
+        error.insertAfter(element.parent());
+      } else {
+        error.insertAfter(element);
+      }
+    },
+  });
 </script>
- <style>
-    label.error{
-        color:white;
-        font-weight: bold;
-        background-color: red;
-        border-radius: 10px;
-        padding: 5px;
-        margin-top: 5px;
-    }
-    input.error{
-        border: 1px solid red;
-    }
-    textarea.error{
-        border: 1px solid red;
-    }
+
+<style>
+  label.error {
+    color: white;
+    font-weight: bold;
+    background-color: red;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  input.error {
+    border: 1px solid red;
+  }
+  select.error {
+    border: 1px solid red;
+  }
 </style>
 {% endblock %}
