@@ -3,7 +3,11 @@
 <div class="container-fluid p-0 mb-5">
   <div class="owl-carousel header-carousel position-relative">
     <div class="owl-carousel-item position-relative">
-      <img class="img-fluid" src="{% static 'images4.jpg' %}" alt="" />
+      <img
+        class="img-fluid"
+        src="{% static '/img/clima.jpg' %}"
+        alt="Clima Jena"
+      />
       <div
         class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
         style="background: rgba(24, 29, 56, 0.7)"
@@ -12,36 +16,28 @@
           <div class="row justify-content-start">
             <div class="col-sm-10 col-lg-8">
               <h5 class="text-primary text-uppercase mb-3 animated slideInDown">
-                Evaluación Inteligente
+                Predicción Inteligente del Clima
               </h5>
               <h1 class="display-3 text-white animated slideInDown">
-                Anticipa el nivel de bienestar laboral
+                Anticipa la temperatura usando redes neuronales
               </h1>
               <p class="fs-5 text-white mb-4 pb-2">
-                Con modelos de redes neuronales, WorkWell predice el nivel de
-                bienestar en el entorno laboral a partir de datos personales
-                clave.
+                Con modelos avanzados de RNN y LSTM, nuestro sistema predice la
+                temperatura futura a partir de variables climáticas como
+                humedad, presión, viento y más.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="owl-carousel-item position-relative">
-      <img class="img-fluid" src="{% static 'images2.jpg' %}" alt="" />
-      <div
-        class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-        style="background: rgba(24, 29, 56, 0.7)"
-      >
-        <div class="container">
-          <div class="row justify-content-start">
-            <div class="col-sm-10 col-lg-8">
-              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">
-                IA para el Bienestar
-              </h5>
-              <h1 class="display-3 text-white animated slideInDown">
-                Evaluación del bienestar laboral con IA
-              </h1>
+              <a
+                href="{% url 'formularioEstudiantil' %}"
+                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+              >
+                Ingresar Datos
+              </a>
+              <a
+                href="{% url 'graficoEstudiantil' %}"
+                class="btn btn-light py-md-3 px-md-5 animated slideInRight"
+              >
+                Ver Resultados
+              </a>
             </div>
           </div>
         </div>
@@ -49,48 +45,6 @@
     </div>
   </div>
 </div>
-<!-- Carousel End -->
 
-<!-- Información del Proyecto Start -->
-<div class="container-xxl py-5">
-  <div class="container">
-    <div
-      class="text-center mx-auto mb-5 wow fadeInUp"
-      data-wow-delay="0.1s"
-      style="max-width: 800px"
-    >
-      <h2 class="mb-3">¿Qué es ArtifPred?</h2>
-      <p class="fs-5">
-        ArtifPred es una plataforma de inteligencia artificial que evalúa el
-        bienestar laboral a partir de variables clave del entorno de trabajo,
-        ayudando a identificar oportunidades de mejora en la calidad de vida
-        profesional.
-      </p>
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="bg-light rounded p-4 h-100">
-          <h4 class="text-primary">
-            <i class="fa fa-smile-beam me-2"></i> Evaluación de Bienestar
-            Laboral
-          </h4>
-          <p>
-            A través de redes neuronales profundas, WorkWell permite evaluar el
-            estado de bienestar de los trabajadores en función de variables
-            como:
-          </p>
-          <ul>
-            <li>Nivel de estrés</li>
-            <li>Horas trabajadas por semana</li>
-            <li>Nivel de satisfacción personal</li>
-          </ul>
-          <a href="/formularioEstudiantil/" class="btn btn-outline-primary mt-3"
-            >Probar evaluación de bienestar</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Información del Proyecto End -->
 {% endblock %}

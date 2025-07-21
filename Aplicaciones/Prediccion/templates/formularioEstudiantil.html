@@ -1,112 +1,345 @@
-{% extends 'plantilla.html' %}
-{% load static %}
-{% block contenido %}
-<!-- Formulario de Bienestar Laboral Start -->
+{% extends 'plantilla.html' %} {% load static %} {% block contenido %}
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center mx-auto mb-5" style="max-width: 800px">
-      <h2 class="mb-3">Formulario de Bienestar Laboral</h2>
+      <h2 class="mb-3">Formulario de Ingreso de Datos Climáticos</h2>
       <p class="fs-5">
-        Complete el formulario para evaluar su estado de bienestar en el trabajo.
+        Ingrese los valores necesarios para la predicción de temperatura usando
+        modelos RNN y LSTM.
       </p>
     </div>
-    <form id="formBienestarLaboral" action="#" method="POST">
+    <form id="formClima" action="#" method="POST">
       {% csrf_token %}
+      <div class="col-md-12">
+        <div class="form-floating">
+          <select class="form-select" id="modelo" name="modelo" required>
+            <option value="" selected disabled>Seleccione un modelo</option>
+            <option value="rnn">RNN Univariado</option>
+            <option value="lstm">LSTM Multivariado</option>
+          </select>
+          <label for="modelo">Modelo a utilizar</label>
+        </div>
+      </div>
+      <br />
+      <br />
+
       <div class="row g-4">
-        <!-- Nivel de estrés -->
-        <div class="col-md-6">
+        <!-- T (degC) -->
+        <div class="col-md-4">
           <div class="form-floating">
             <input
               type="number"
               class="form-control"
-              id="nivel_estres"
-              name="nivel_estres"
-              min="0"
-              max="10"
-              step="1"
+              name="T_degC"
+              id="T_degC"
+              step="0.01"
               required
             />
-            <label for="nivel_estres">Nivel de estrés (0-10)</label>
+            <label for="T_degC">Temperatura (°C)</label>
           </div>
         </div>
 
-        <!-- Horas trabajadas a la semana -->
-        <div class="col-md-6">
+        <!-- Tpot (K) -->
+        <div class="col-md-4">
           <div class="form-floating">
             <input
               type="number"
               class="form-control"
-              id="horas_trabajadas"
-              name="horas_trabajadas"
-              min="0"
-              max="100"
-              step="1"
+              name="Tpot"
+              id="Tpot"
+              step="0.01"
               required
             />
-            <label for="horas_trabajadas">Horas trabajadas por semana</label>
+            <label for="Tpot">Temperatura Potencial (K)</label>
           </div>
         </div>
 
-        <!-- Nivel de satisfacción -->
-        <div class="col-md-6">
+        <!-- Tdew (degC) -->
+        <div class="col-md-4">
           <div class="form-floating">
             <input
               type="number"
               class="form-control"
-              id="nivel_satisfaccion"
-              name="nivel_satisfaccion"
+              name="Tdew"
+              id="Tdew"
+              step="0.01"
+              required
+            />
+            <label for="Tdew">Punto de Rocío (°C)</label>
+          </div>
+        </div>
+
+        <!-- VPmax -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="VPmax"
+              id="VPmax"
+              step="0.01"
+              required
+            />
+            <label for="VPmax">Presión Vapor Máx. (mbar)</label>
+          </div>
+        </div>
+
+        <!-- VPact -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="VPact"
+              id="VPact"
+              step="0.01"
+              required
+            />
+            <label for="VPact">Presión Vapor Actual (mbar)</label>
+          </div>
+        </div>
+
+        <!-- VPdef -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="VPdef"
+              id="VPdef"
+              step="0.01"
+              required
+            />
+            <label for="VPdef">Déficit de Vapor (mbar)</label>
+          </div>
+        </div>
+
+        <!-- sh -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="sh"
+              id="sh"
+              step="0.001"
+              required
+            />
+            <label for="sh">Humedad Específica (g/kg)</label>
+          </div>
+        </div>
+
+        <!-- H2OC -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="H2OC"
+              id="H2OC"
+              step="0.01"
+              required
+            />
+            <label for="H2OC">Concentración H₂O (mmol/mol)</label>
+          </div>
+        </div>
+
+        <!-- rho -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="rho"
+              id="rho"
+              step="0.01"
+              required
+            />
+            <label for="rho">Densidad del Aire (g/m³)</label>
+          </div>
+        </div>
+
+        <!-- wv -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="wv"
+              id="wv"
+              step="0.01"
+              required
+            />
+            <label for="wv">Vel. Viento (m/s)</label>
+          </div>
+        </div>
+
+        <!-- max. wv -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="max_wv"
+              id="max_wv"
+              step="0.01"
+              required
+            />
+            <label for="max_wv">Vel. Máx. Viento (m/s)</label>
+          </div>
+        </div>
+
+        <!-- wd -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="wd"
+              id="wd"
               min="0"
-              max="10"
+              max="360"
               step="1"
               required
             />
-            <label for="nivel_satisfaccion">Nivel de satisfacción (0-10)</label>
+            <label for="wd">Dirección del Viento (°)</label>
           </div>
         </div>
 
         <!-- Botón de envío -->
         <div class="col-12">
           <button type="submit" class="btn btn-primary w-100 py-3">
-            Evaluar
+            Enviar Datos
           </button>
         </div>
       </div>
     </form>
   </div>
 </div>
-<!-- Formulario de Bienestar Laboral End -->
 
 <script>
-  $("#formBienestarLaboral").validate({
-    rules: {
-      nivel_estres: {
-        required: true,
-        min: 0,
-        max: 10,
+  $(document).ready(function () {
+    // Validación personalizada para el formulario climático
+    $("#formClima").validate({
+      ignore: [],
+      rules: {
+        modelo: {
+          required: true,
+        },
+        T_degC: {
+          required: function () {
+            return (
+              $("#modelo").val() === "rnn" || $("#modelo").val() === "lstm"
+            );
+          },
+          number: true,
+          min: -50,
+          max: 60,
+        },
+        Tpot: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 200,
+          max: 400,
+        },
+        Tdew: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: -50,
+          max: 60,
+        },
+        VPmax: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        VPact: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        VPdef: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        sh: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        H2OC: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        rho: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        wv: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        max_wv: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+        },
+        wd: {
+          required: function () {
+            return $("#modelo").val() === "lstm";
+          },
+          number: true,
+          min: 0,
+          max: 360,
+        },
       },
-      horas_trabajadas: {
-        required: true,
-        min: 0,
-        max: 100,
+      messages: {
+        modelo: "Seleccione el modelo a usar.",
+        T_degC: "Ingrese una temperatura válida entre -50 y 60 °C.",
+        Tpot: "Ingrese una temperatura potencial entre 200 y 400 K.",
+        Tdew: "Ingrese un punto de rocío entre -50 y 60 °C.",
+        VPmax: "Presión de vapor máxima debe ser mayor o igual a 0.",
+        VPact: "Presión de vapor actual debe ser mayor o igual a 0.",
+        VPdef: "Déficit de vapor debe ser mayor o igual a 0.",
+        sh: "Humedad específica debe ser mayor o igual a 0.",
+        H2OC: "Concentración de H₂O debe ser mayor o igual a 0.",
+        rho: "Densidad del aire debe ser mayor o igual a 0.",
+        wv: "Velocidad del viento debe ser mayor o igual a 0.",
+        max_wv: "Velocidad máxima del viento debe ser mayor o igual a 0.",
+        wd: "Dirección del viento debe estar entre 0° y 360°.",
       },
-      nivel_satisfaccion: {
-        required: true,
-        min: 0,
-        max: 10,
+      errorPlacement: function (error, element) {
+        if (element.parent(".form-floating").length) {
+          error.insertAfter(element.parent());
+        } else {
+          error.insertAfter(element);
+        }
       },
-    },
-    messages: {
-      nivel_estres: "Ingrese un valor entre 0 y 10.",
-      horas_trabajadas: "Ingrese entre 0 y 100 horas.",
-      nivel_satisfaccion: "Ingrese un valor entre 0 y 10.",
-    },
-    errorPlacement: function (error, element) {
-      if (element.parent(".form-floating").length) {
-        error.insertAfter(element.parent());
-      } else {
-        error.insertAfter(element);
-      }
-    },
+    });
   });
 </script>
 
