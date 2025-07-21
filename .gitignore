@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos de configuración
+.env
+*.sqlite3
+
+# VSCode
+.vscode/
